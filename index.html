@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#eef0f3" />
+    <meta name="description" content="拨动、碰撞与吸引不同材质的小球，在没有目标的物理实验桌上放松片刻。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content="Tinker Material Lab｜多材质物理解压实验桌" />
+    <meta property="og:description" content="拨动、碰撞与吸引不同材质的小球，在没有目标的物理实验桌上放松片刻。" />
+    <meta property="og:image" content="/og-cover.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Tinker 多材质物理解压实验桌运行画面" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tinker Material Lab｜多材质物理解压实验桌" />
+    <meta name="twitter:description" content="拨动、碰撞与吸引不同材质的小球，在没有目标的物理实验桌上放松片刻。" />
+    <meta name="twitter:image" content="/og-cover.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Tinker Material Lab｜多材质物理解压实验桌</title>
+    <style>
+      #app-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        color: #26303f;
+        background: #eef2ff;
+        transition: opacity 220ms ease, visibility 220ms ease;
+      }
+
+      #app-loader.is-ready {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .loader-content {
+        width: min(220px, 64vw);
+        text-align: center;
+      }
+
+      .loader-mark {
+        height: 30px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 3px;
+        margin-bottom: 18px;
+        transform: rotate(-8deg);
+      }
+
+      .loader-mark i {
+        width: 8px;
+        border-radius: 5px;
+      }
+
+      .loader-mark i:nth-child(1) { height: 17px; background: #315efb; }
+      .loader-mark i:nth-child(2) { height: 28px; background: #ff5b57; }
+      .loader-mark i:nth-child(3) { height: 21px; background: #b6ef4a; }
+
+      .loader-label {
+        margin: 0 0 10px;
+        font: 700 10px/1.2 ui-sans-serif, system-ui, sans-serif;
+        letter-spacing: 0.12em;
+      }
+
+      .loader-track {
+        height: 3px;
+        overflow: hidden;
+        border-radius: 3px;
+        background: rgba(49, 94, 251, 0.13);
+      }
+
+      .loader-track::after {
+        width: 45%;
+        height: 100%;
+        display: block;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #315efb, #9d72ff);
+        content: '';
+        animation: loader-progress 900ms ease-in-out infinite alternate;
+      }
+
+      @keyframes loader-progress {
+        from { transform: translateX(-105%); }
+        to { transform: translateX(225%); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #app-loader { transition: none; }
+        .loader-track::after { animation: none; transform: translateX(60%); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-loader" role="status" aria-live="polite" aria-label="正在加载多材质实验桌">
+      <div class="loader-content">
+        <span class="loader-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <p class="loader-label">正在准备实验桌</p>
+        <div class="loader-track" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
